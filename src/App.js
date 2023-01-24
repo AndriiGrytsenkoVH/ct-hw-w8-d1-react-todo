@@ -8,21 +8,15 @@ function App() {
 	const [toDoList, setToDoList] = useState({});
 	const [count, setCount] = useState(0);
 
-	function handleAddClick(text){
+	function handleAddClick(newText){
 		let newToDoList = toDoList;
-		newToDoList[count] = <ToDo text={text} id={`todo-${count}`} />;
+		newToDoList[count] = <ToDo text={newText} id={`todo-${count}`} />;
 		setToDoList(newToDoList);
 		setCount(count + 1);
 	}
 
 	function handleDeleteClick(){
 
-	}
-
-	let test = {
-		'1': <h1>One</h1>,
-		'2': <h1>Two</h1>,
-		'3': <h1>Three</h1>,
 	}
 
 	return (

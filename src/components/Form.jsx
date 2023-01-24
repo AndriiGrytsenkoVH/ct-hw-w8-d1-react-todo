@@ -1,18 +1,32 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function Form(props) {
-	const [text, setText] = useState('');
-
-	function handleChange(newText){
-		setText(newText)
+class Form extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = {value: ''};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-  return (
+	handleChange(event) {
+	    this.setState({value: event.target.value});  
+	}
 
-		<div className="input-group mb-3">
-			<button className="btn btn-outline-secondary" type="button" id={props.id} onClick={() => props.handleAddClick(text)}>Add</button>
-			<input type="text" className="form-control" placeholder="To-Do" aria-label="To-Do" aria-describedby={props.id} onChange={ handleChange }/>
-		</div>
+	handleSubmit(event) {
+		this.handleAddClick(this.state.value);
+		event.preventDefault();
+	}
 
-  )
+  	render() {
+		return(
+			<form onSubmit={this.handleSubmit}>
+				<div className="input-group mb-3">
+					<button className="btn btn-outline-secondary" type="submit" id={this.props.id}>Add</button>
+					<input type="text" className="form-control" placeholder="To-Do" aria-label="To-Do" aria-describedby={this. props.id} onChange={ this.handleChange }/>
+				</div>
+  			</form>
+		)
+	}
 }
+
+export default Form;
